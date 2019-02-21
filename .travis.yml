@@ -10,9 +10,12 @@ before_install:
   - gem install bundler
 
 script: bundle exec jekyll build
-exclude: [vendor, LICENSE.txt, README.md]
+exclude: [vendor]
 sudo: false
 cache: bundler
+
+before_deploy:
+  - rm -f _site/Gemfile _site/Gemfile.lock
 
 deploy:
   local-dir: _site
