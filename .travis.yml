@@ -1,0 +1,25 @@
+language: ruby
+branches:
+  only:
+  - master
+rvm:
+  - 2.5.1
+  
+before_install:
+  - gem update --system
+  - gem install bundler
+
+script: bundle exec jekyll build
+exclude: [vendor]
+sudo: false
+cache: bundler
+
+deploy:
+  local-dir: _site
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  keep-history: true
+  fqdn: pyjter.com
+  on:
+    branch: master
